@@ -46,10 +46,10 @@ if(isset($_SESSION["token"])){
   if($_SESSION["isadmin"] == 1){
     echo "<li class='nav-item'><a class='nav-link' href='/jpof/admin/'>Back-end</a></li><div class='ml-auto d-flex'><li class='nav-item'><a class='nav-link' href='/jpof/signout.php'>Déconnexion</a></li></div></ul>";
   }else{
-  echo"<li class='nav-item'><a class='nav-link' href='/jpof/show-fav.php'>Mes favoris</a></li><li class='nav-item'><a class='nav-link' href='/jpof/show-sub.php'>Mes inscriptions</a></li><div class='ml-auto d-flex'><li class='nav-item'><a class='nav-link' href='signout.php'>Déconnexion</a></li></div></ul>";
+  echo"<li class='nav-item'><a class='nav-link' href='profile.php'>Mon profil</a></li><div class='ml-auto d-flex'><li class='nav-item'><a class='nav-link' href='signout.php'>Déconnexion</a></li></div></ul>";
   }
 }else{
-  echo"<div class='ml-auto d-flex'><li class='nav-item'><a class='nav-link' href='signup.php'>Inscription</a></li><li class='nav-item'><a class='nav-link' href='signin.php'>Connexion</a></li></div></ul>";
+  echo"<div class='ml-auto d-flex'><li class='nav-item'><a class='nav-link' href='sign.php?set=signup'>Inscription</a></li><li class='nav-item'><a class='nav-link' href='sign.php?set=signin'>Connexion</a></li></div></ul>";
 }
 
 ?>

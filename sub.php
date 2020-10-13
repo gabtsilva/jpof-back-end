@@ -7,7 +7,7 @@ $token = $_SESSION["token"];
 if($_GET["action"] === "sub"){
   try {
 
-    $sql = "INSERT INTO registrations (event_id,user_token) VALUES ('$id','$token')";
+    $sql = "INSERT INTO registrations (activity_id,user_token) VALUES ('$id','$token')";
   
     $conn->exec($sql);
     header("Location: ".$_SERVER['HTTP_REFERER']);
@@ -21,7 +21,7 @@ if($_GET["action"] === "sub"){
 }elseif($_GET["action"] === "unsub"){
   try {
   
-    $sql = "DELETE FROM registrations WHERE event_id = $id AND user_token = '$token'";
+    $sql = "DELETE FROM registrations WHERE activity_id = $id AND user_token = '$token'";
   
     $conn->exec($sql);
     header("Location: ".$_SERVER['HTTP_REFERER']);

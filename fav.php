@@ -7,7 +7,7 @@ $token = $_SESSION["token"];
 if($_GET["action"] === "add"){
   try {
 
-    $sql = "INSERT INTO favorites (event_id,user_token) VALUES ('$id','$token')";
+    $sql = "INSERT INTO favorites (activity_id,user_token) VALUES ('$id','$token')";
   
     $conn->exec($sql);
     header("Location: ".$_SERVER['HTTP_REFERER']);
@@ -21,7 +21,7 @@ if($_GET["action"] === "add"){
 }elseif($_GET["action"] === "remove"){
   try {
   
-    $sql = "DELETE FROM favorites WHERE event_id = $id AND user_token = '$token'";
+    $sql = "DELETE FROM favorites WHERE activity_id = $id AND user_token = '$token'";
   
     $conn->exec($sql);
     header("Location: ".$_SERVER['HTTP_REFERER']);
@@ -33,10 +33,5 @@ if($_GET["action"] === "add"){
   
   $conn = null;
 }
-
-
-
-
-
 
 ?>
