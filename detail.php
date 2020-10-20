@@ -11,7 +11,7 @@ $originalDate = $result["activity_date"];
 $newDate = date("d-m-Y", strtotime($originalDate));
 $start_time = date("g:i", strtotime($result["activity_start"]));
 $end_time = date("G:i", strtotime($result["activity_end"]));
-echo "<div class='activity-detail my-5'><h3>".$result["activity_name"]."</h3><h6 class='card-subtitle mb-2 text-muted'>Date: $newDate - Heure: $start_time • $end_time</h6><h6 class='card-subtitle mb-2'>Concerne le département: ".$result["category_name"]." • Local: ".$result["room_name"]." • Bâtiment: ".$result["building_name"]."</h6><h6 class='card-subtitle mb-2'>Présenté par: <a href='detail-conf.php?id=".$result["speaker_id"]."'>".$result["speaker_name"].", ".$result["speaker_surname"]."</a></h6><p class='detail-text card-text'>".$result["activity_description"]."</p>";
+echo "<div class='activity-detail my-5'><h3>".$result["activity_name"]."</h3><h6 class='card-subtitle mb-2 text-muted'>Date: $newDate - Heure: $start_time • $end_time</h6><h6 class='card-subtitle mb-2'>Concerne le département: ".$result["category_name"]." • Local: ".$result["room_name"]." • Bâtiment: ".$result["building_name"]."</h6><h6 class='card-subtitle mb-2'>Présenté par: <a href='speaker.php?id=".$result["speaker_id"]."'>".$result["speaker_name"].", ".$result["speaker_surname"]."</a></h6><p class='detail-text card-text'>".$result["activity_description"]."</p>";
 $sql2 = "SELECT * FROM registrations WHERE activity_id = $id";
 $result2 = $conn->query($sql2);
 $i = 0;
@@ -44,7 +44,7 @@ if(isset($_SESSION["token"]) && $_SESSION["isadmin"] == 0){
 echo "</div>";
 if(isset($_SESSION["isadmin"])){
   if($_SESSION["isadmin"] == 1){
-    echo "<a class='detail-btn btn btn-warning' href='admin/update.php?table=events&id=$id'>Modifier l'événement</a>";
+    echo "<a class='detail-btn btn btn-warning' href='admin/update.php?table=activities&id=$id'>Modifier l'événement</a>";
   }else{
   }
 }

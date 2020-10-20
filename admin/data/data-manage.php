@@ -30,13 +30,13 @@ if($table === "section"){
   foreach($result as $row){
     echo "<tr><td>".$row["speaker_id"]."</td><td><a href='../update.php?id=".$row["speaker_id"]."&table=conf'>".$row["speaker_name"]."</a></td><td>".$row["speaker_surname"]."</td><td>".$row["speaker_linkedin"]."</td><td class='modsup'><a href='../delete.php?id=".$row["speaker_id"]."&table=conf'><i class='fas fa-trash-alt'></i></a></td></tr>";
   }
-}else if($table === "events"){
-  echo "<div><ol class='breadcrumb'><li class='breadcrumb-item active'><a href='/jpof/admin/'>Accueil</a></li><li class='breadcrumb-item active'><a href='data-menu.php'>Gérer les données</a></li><li class='breadcrumb-item active'>Gérer les événements</li></ol></div><h1>Liste des événéments</h1><small>Cliquez sur une entrée pour la modifier</small><table class='table table-striped'>";
+}else if($table === "activities"){
+  echo "<div><ol class='breadcrumb'><li class='breadcrumb-item active'><a href='/jpof/admin/'>Accueil</a></li><li class='breadcrumb-item active'><a href='data-menu.php'>Gérer les données</a></li><li class='breadcrumb-item active'>Gérer les activités</li></ol></div><h1>Liste des activités</h1><small>Cliquez sur une entrée pour la modifier</small><table class='table table-striped'>";
   echo "<tr class='thead-light'><th>Nom</th><th>Implantation</th><th>Local</th><th>Section</th><th>Nombre d'inscrits</th><th>Inscrits/Favoris</th><th></th><tr>";
   $sql = "SELECT activities.*,buildings.*,categories.*, rooms.* FROM activities LEFT JOIN buildings ON activities.building_id = buildings.building_id LEFT JOIN categories ON activities.category_id= categories.category_id LEFT JOIN rooms ON activities.room_id = rooms.room_id";
   $result = $conn->query($sql);
   foreach($result as $row){
-    echo "<tr><td><a href='../update.php?id=".$row["activity_id"]."&table=events'>".$row["activity_name"]."</a></td><td>".$row["building_name"]."</a></td><td>".$row["room_name"]."</td><td>".$row["category_name"]."</td>";
+    echo "<tr><td><a href='../update.php?id=".$row["activity_id"]."&table=activities'>".$row["activity_name"]."</a></td><td>".$row["building_name"]."</a></td><td>".$row["room_name"]."</td><td>".$row["category_name"]."</td>";
     $sql2 = "SELECT * FROM registrations WHERE activity_id = ".$row["activity_id"]."";
     $result2 = $conn->query($sql2);
     $i = 0;
@@ -48,7 +48,7 @@ if($table === "section"){
     }else{
       echo "<td>$i/".$row["activity_size"]."</td>";
     }
-    echo "<td><a href='../event-list.php?id=".$row["activity_id"]."'><i class='fas fa-list'></i></a></td><td class='modsup'><a href='../delete.php?id=".$row["activity_id"]."&table=events'><i class='fas fa-trash-alt'></i></a></td></tr>";
+    echo "<td><a href='../activity-list.php?id=".$row["activity_id"]."'><i class='fas fa-list'></i></a></td><td class='modsup'><a href='../delete.php?id=".$row["activity_id"]."&table=activities'><i class='fas fa-trash-alt'></i></a></td></tr>";
   }
 }else if($table === "room"){
   echo "<div><ol class='breadcrumb'><li class='breadcrumb-item active'><a href='/jpof/admin/'>Accueil</a></li><li class='breadcrumb-item active'><a href='data-menu.php'>Gérer les données</a></li><li class='breadcrumb-item active'>Gérer les locaux</li></ol></div><h1>Liste des locaux</h1><small>Cliquez sur une entrée pour la modifier</small><table class='table table-striped'>";

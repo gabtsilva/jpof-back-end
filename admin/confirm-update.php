@@ -6,24 +6,24 @@ require "../header.php";
 $id=$_GET["id"];
 $table=$_GET["table"];
 
-if($table === "events"){
-  $eventname = $_POST["event-name"];
-  $eventdesc = addslashes($_POST["event-desc"]);
+if($table === "activities"){
+  $eventname = $_POST["activity-name"];
+  $eventdesc = addslashes($_POST["activity-desc"]);
   $eventlocal = $_POST["event-local"];
-  $eventbuilding = $_POST["event-building"];
+  $eventbuilding = $_POST["activity-building"];
   $eventsection = $_POST["event-section"];
-  $eventsize = $_POST["event-size"];
-  $eventdate = $_POST["event-date"];
-  $eventstart = $_POST["event-start"];
-  $eventend = $_POST["event-end"];
+  $eventsize = $_POST["activity-size"];
+  $eventdate = $_POST["activity-date"];
+  $eventstart = $_POST["activity-start"];
+  $eventend = $_POST["activity-end"];
   $eventconf = $_POST["event-conf"];
 
   try {
 
-    $sql = "UPDATE events SET event_name='$eventname', event_description='$eventdesc', room_id=$eventlocal, building_id=$eventbuilding, category_id=$eventsection, event_size=$eventsize, event_date='$eventdate', event_start='$eventstart',event_end='$eventend',event_speaker='$eventconf' WHERE event_id = $id";
+    $sql = "UPDATE activities SET activity_name='$eventname', activity_description='$eventdesc', room_id=$eventlocal, building_id=$eventbuilding, category_id=$eventsection, activity_size=$eventsize, activity_date='$eventdate', activity_start='$eventstart',activity_end='$eventend',activity_speaker='$eventconf' WHERE activity_id = $id";
 
     $conn->exec($sql);
-    header('Location:data/data-manage.php?table=events');
+    header('Location:data/data-manage.php?table=activities');
     }
   catch(PDOException $e)
     {
