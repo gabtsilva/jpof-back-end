@@ -9,7 +9,7 @@ $id=$_GET["id"];
 
 try {
   if ($table === "events"){
-    $sql = "DELETE FROM events WHERE event_id=$id";
+    $sql = "DELETE FROM activities WHERE activity_id=$id";
   } elseif($table === "building"){
     $sql = "DELETE FROM buildings WHERE building_id=$id";
   } elseif($table === "section"){

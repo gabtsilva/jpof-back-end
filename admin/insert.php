@@ -49,20 +49,20 @@ if($_GET["table"] == "section"){
 // Insertion d'un événement
 }elseif($_GET["table"] == "event"){
 
-  $eventname = $_POST["event-name"];
-  $eventdesc = addslashes($_POST["event-desc"]);
-  $eventlocal = $_POST["event-local"];
-  $eventbuilding = $_POST["event-building"];
-  $eventsection = $_POST["event-section"];
-  $eventsize = $_POST["event-size"];
-  $eventdate = $_POST["event-date"];
-  $eventstart = $_POST["event-start"];
-  $eventend = $_POST["event-end"];
-  $eventconf = $_POST["event-conf"];
+  $activityname = $_POST["activity-name"];
+  $activitydesc = addslashes($_POST["activity-desc"]);
+  $activitylocal = $_POST["activity-local"];
+  $activitybuilding = $_POST["activity-building"];
+  $activitysection = $_POST["activity-section"];
+  $activitysize = $_POST["activity-size"];
+  $activitydate = $_POST["activity-date"];
+  $activitystart = $_POST["activity-start"];
+  $activityend = $_POST["activity-end"];
+  $activityconf = $_POST["activity-conf"];
 
   try {
 
-    $sql = "INSERT INTO events (event_name,event_description,room_id,building_id,category_id,event_size,event_date,event_start,event_end,event_speaker) VALUES ('$eventname','$eventdesc',$eventlocal,$eventbuilding,$eventsection,$eventsize,'$eventdate','$eventstart','$eventend', '$eventconf')";
+    $sql = "INSERT INTO activities (activity_name,activity_description,room_id,building_id,category_id,activity_size,activity_date,activity_start,activity_end,activity_speaker) VALUES ('$activityname','$activitydesc',$activitylocal,$activitybuilding,$activitysection,$activitysize,'$activitydate','$activitystart','$activityend', '$activityconf')";
 
     $conn->exec($sql);
     header('Location:../admin/index.php');
