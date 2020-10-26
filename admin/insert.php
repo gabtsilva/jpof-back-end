@@ -47,10 +47,11 @@ if($_GET["table"] == "section"){
   $conn = null;
 
 // Insertion d'un événement
-}elseif($_GET["table"] == "event"){
+}elseif($_GET["table"] == "activities"){
 
   $activityname = $_POST["activity-name"];
   $activitydesc = addslashes($_POST["activity-desc"]);
+  $eventid = $_POST["event-id"];
   $activitylocal = $_POST["activity-local"];
   $activitybuilding = $_POST["activity-building"];
   $activitysection = $_POST["activity-section"];
@@ -62,7 +63,7 @@ if($_GET["table"] == "section"){
 
   try {
 
-    $sql = "INSERT INTO activities (activity_name,activity_description,room_id,building_id,category_id,activity_size,activity_date,activity_start,activity_end,activity_speaker) VALUES ('$activityname','$activitydesc',$activitylocal,$activitybuilding,$activitysection,$activitysize,'$activitydate','$activitystart','$activityend', '$activityconf')";
+    $sql = "INSERT INTO activities (activity_name,activity_description,room_id,building_id,category_id,activity_size,activity_date,activity_start,activity_end,activity_speaker,event_id) VALUES ('$activityname','$activitydesc',$activitylocal,$activitybuilding,$activitysection,$activitysize,'$activitydate','$activitystart','$activityend', '$activityconf','$eventid')";
 
     $conn->exec($sql);
     header('Location:../admin/index.php');
@@ -124,6 +125,26 @@ if($_GET["table"] == "section"){
   $conn = null;
 
 // Renvoi vers index en cas d'erreur ou d'arrivée inexpliquée sur la page 
+}else if($_GET["table"] === "event"){
+  $eventname = addslashes($_POST["event-name"]);
+  $eventdesc = addslashes($_POST["event-desc"]);
+  $eventdate = addslashes($_POST["event-date"]);
+  $eventactive = $_POST["event-active"];
+
+  try {
+
+    $sql = "INSERT INTO events (event_name,event_description,event_date,event_on) VALUES ('$eventname','$eventdesc','$eventdate','$eventactive')";
+
+    $conn->exec($sql);
+    header('Location:../admin/index.php');
+    }
+  catch(PDOException $e)
+    {
+    echo $sql . "<br>" . $e->getMessage();
+    }
+
+  $conn = null;
+
 }else{
   header("Location: /jpof/index.php?error");
 }

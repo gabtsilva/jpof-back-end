@@ -20,14 +20,28 @@ if($table === 'building'){
 // Mise à jour d'un événement
 }else if($table === "activities"){
 
-  $sql = "SELECT activities.*,buildings.* FROM activities LEFT JOIN buildings ON activities.building_id = buildings.building_id WHERE activity_id = $id ";
+  $sql = "SELECT activities.*,buildings.*,events.* FROM activities LEFT JOIN buildings ON activities.building_id = buildings.building_id LEFT JOIN events ON activities.event_id = events.event_id WHERE activity_id = $id ";
   $result = $conn->query($sql)->fetch();
   $building = $result["building_id"];
   $room = $result["room_id"];
   $section = $result["category_id"];
   $conf = $result["activity_speaker"];
+  $event = $result["event_id"];
 
-  echo "<div><ol class='breadcrumb'><li class='breadcrumb-item active'><a href='/jpof/admin/'>Accueil</a></li><li class='breadcrumb-item active'><a href='data/data-menu.php'>Gérer les données</a></li><li class='breadcrumb-item active'><a href='data/data-manage.php?table=events'>Gérer les activités</a></li><li class='breadcrumb-item active'>".$result["activity_name"]."</li></ol></div>","<h1>Modifications pour : <span class='e-name'>".$result["activity_name"]."</span></h1><form action='confirm-update.php?id=$id&table=activities' method='POST'><div class='form-group'><label for='activity-name'>Intitulé</label><input type='text' value='".$result["activity_name"]."' class='form-control' id='activity-name' name='activity-name'></div><div class='row'><div class='form-group col'><label for='activity-name'>Date</label><input value='".$result["activity_date"]."' type='date' class='form-control' id='activity-name' name='activity-date'></div><div class='form-group col'><label for='activity-time'>Tranche horaire</label><div class='input-group'><div class='input-group-prepend'><span class='input-group-text' id='basic-addon1'>De</span></div><input value='".$result["activity_start"]."' type ='time' min='08:00' max='18:00' class='form-control' name='activity-start'><div class='input-group-prepend'><span class='input-group-text'>À</span></div><input type ='time' min='09:00' value='".$result["activity_end"]."' max='18:00' class='form-control' name='activity-end'></div></div></div><div class='form-group'><label for='activity-desc'>Description</label><textarea class='form-control' name='activity-desc' id='activity-desc' rows='3'>".$result["activity_description"]."</textarea></div><div class='row'><div class='form-group col'><label for='activity-building'>Implantation</label><select name='activity-building' class='col-auto form-control'>";
+  echo "<div><ol class='breadcrumb'><li class='breadcrumb-item active'><a href='/jpof/admin/'>Accueil</a></li><li class='breadcrumb-item active'><a href='data/data-menu.php'>Gérer les données</a></li><li class='breadcrumb-item active'><a href='data/data-manage.php?table=events'>Gérer les activités</a></li><li class='breadcrumb-item active'>".$result["activity_name"]."</li></ol></div>","<h1>Modifications pour : <span class='e-name'>".$result["activity_name"]."</span></h1><form action='confirm-update.php?id=$id&table=activities' method='POST'><div class='row'><div class='form-group col-8'><label for='activity-name'>Intitulé</label><input type='text' class='form-control' id='activity-name' name='activity-name' value='".$result["activity_name"]."' required></div><div class='form-group col-4'><label for='event-id'>Événement associé</label><select name='event-id' class='col-auto form-control' required><option disabled selected value> --- </option>";
+
+  $sql2 = "SELECT * FROM events ORDER BY event_name ASC";
+  $result2 = $conn->query($sql2);
+
+  foreach($result2 as $row2){
+    if($row2["event_id"] === $event){
+      echo "<option selected value='".$row2["event_id"]."'>".$row2["event_name"]."</option>";
+    }else{
+      echo "<option value='".$row2["event_id"]."'>".$row2["event_name"]."</option>";
+    }
+  }
+
+  echo "</select></div></div><div class='row'><div class='form-group col'><label for='activity-name'>Date</label><input value='".$result["activity_date"]."' type='date' class='form-control' id='activity-name' name='activity-date'></div><div class='form-group col'><label for='activity-time'>Tranche horaire</label><div class='input-group'><div class='input-group-prepend'><span class='input-group-text' id='basic-addon1'>De</span></div><input value='".$result["activity_start"]."' type ='time' min='08:00' max='18:00' class='form-control' name='activity-start'><div class='input-group-prepend'><span class='input-group-text'>À</span></div><input type ='time' min='09:00' value='".$result["activity_end"]."' max='18:00' class='form-control' name='activity-end'></div></div></div><div class='form-group'><label for='activity-desc'>Description</label><textarea class='form-control' name='activity-desc' id='activity-desc' rows='3'>".$result["activity_description"]."</textarea></div><div class='row'><div class='form-group col'><label for='activity-building'>Implantation</label><select name='activity-building' class='col-auto form-control'>";
 
   $sql = "SELECT * FROM buildings";
   $result = $conn->query($sql);

@@ -2,8 +2,12 @@
 session_start();
 require "admin/includes/conn.inc.php";
 require "header.php";
-echo "<h1>Événements à venir</h1>";
-$sql = "SELECT * FROM activities ORDER BY activity_date DESC";
+$sql = "SELECT * FROM events WHERE event_on = 1";
+$result = $conn->query($sql);
+foreach($result as $row){
+$eventid = $row["event_id"];
+echo "<div class='container'><h1>".$row["event_name"]."</h1>";
+$sql = "SELECT * FROM activities WHERE event_id = $eventid ORDER BY activity_date DESC";
 $result = $conn->query($sql);
 foreach($result as $row){
   $originalDate = $row["activity_date"];
@@ -27,9 +31,11 @@ foreach($result as $row){
     }
   }else{
   }
-  echo "</div></div>";
+  echo "</div></div></div>";
   
 }
+}
+
 
 require "footer.php";
 

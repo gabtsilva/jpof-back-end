@@ -1,3 +1,7 @@
+body{
+  width:80%;
+  margin:auto;
+}
 .nav{
   padding:0.5rem 0;
   background-color:#e9ecef;
@@ -24,11 +28,6 @@ h2{
   padding:5rem 4rem;
   width:50%;
   margin:3rem auto;
-}
-body{
-  width:60%;
-  max-width:1200px;
-  margin:auto;
 }
 h1{
   font-size:1.4rem;
