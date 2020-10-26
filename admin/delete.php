@@ -16,6 +16,8 @@ try {
     $sql = "DELETE FROM categories WHERE category_id=$id";
   } elseif($table === "conf"){
     $sql = "DELETE FROM speakers WHERE speakers_id=$id";
+  }else if($table === "events"){
+    $sql = "DELETE FROM events WHERE event_id=$id";
   }
   $conn->exec($sql);
   header("Location:data/data-manage.php?table=".$table);
