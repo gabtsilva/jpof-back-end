@@ -10,17 +10,17 @@ $id=$_GET["id"];
 try {
   if ($table === "activities"){
     $sql = "DELETE FROM activities WHERE activity_id=$id";
-  } elseif($table === "building"){
+  } elseif($table === "buildings"){
     $sql = "DELETE FROM buildings WHERE building_id=$id";
-  } elseif($table === "section"){
+  } elseif($table === "departments"){
     $sql = "DELETE FROM categories WHERE category_id=$id";
-  } elseif($table === "conf"){
-    $sql = "DELETE FROM speakers WHERE speakers_id=$id";
+  } elseif($table === "speakers"){
+    $sql = "DELETE FROM speakers WHERE speaker_id=$id";
   }else if($table === "events"){
     $sql = "DELETE FROM events WHERE event_id=$id";
   }
   $conn->exec($sql);
-  header("Location:data/data-manage.php?table=".$table);
+  header("Location:data-manage.php?table=".$table);
   }
 catch(PDOException $e)
   {

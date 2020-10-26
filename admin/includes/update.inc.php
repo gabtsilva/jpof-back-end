@@ -2,8 +2,8 @@
 // Démarrage de la session et vérification de la connexion utilisateur
 session_start();
 if(isset($_SESSION["token"])){
-require "includes/conn.inc.php";
-require "../header.php";
+require "conn.inc.php";
+require "../../header.php";
 
 // Récupération ID et Table pour affichage
 $id=$_GET["id"];
@@ -102,14 +102,32 @@ if($table === 'building'){
   echo "</select></div><button type='submit' class='btn btn-success'>Mettre à jour</button><input type='hidden' value='".$id."' name='id'></form>";
 
 // Mise à jour d'une catégorie
-}elseif($table === "section"){
+}elseif($table === "departments"){
 
   $sql = "SELECT * FROM categories WHERE category_id=$id";
   $result = $conn->query($sql)->fetch();
   $building = $result["building_id"];
 
-  echo "<div><ol class='breadcrumb'><li class='breadcrumb-item active'><a href='/jpof/admin/'>Accueil</a></li><li class='breadcrumb-item active'><a href='data/data-menu.php'>Gérer les données</a></li><li class='breadcrumb-item active'><a href='data/data-manage.php?table=section'>Gérer les sections</a></li><li class='breadcrumb-item active'>".$result["category_name"]."</li></ol></div>";
-  echo "<h1>Modifications pour : <span class='e-name'>".$result["category_name"]."</span></h1><form action='confirm-update.php?id=$id&table=section' method='POST'><div class='form-group'><label for='name-section'>Nom</label><input value='".$result["category_name"]."' type='text' class='form-control' id='name-section' name='name-section'></div><div class='form-group'><label for='id-building'>Implantation</label><select name='id-building' class='col-auto form-control'>";
+  echo "<div>
+          <ol class='breadcrumb'>
+            <li class='breadcrumb-item active'>
+              <a href='/jpof/admin/'>Accueil</a>
+            </li>
+            <li class='breadcrumb-item active'>
+              <a href='data-manage.php?table=departments'>Gérer les départements</a>
+            </li>
+            <li class='breadcrumb-item active'>".$result["category_name"]."</li>
+          </ol>
+        </div>";
+  echo "<h1>Modifications pour : <span class='e-name'>".$result["category_name"]."</span></h1>
+        <form action='confirm-update.php?id=$id&table=departments' method='POST'>
+          <div class='form-group'>
+            <label for='name-section'>Nom</label>
+            <input value='".$result["category_name"]."' type='text' class='form-control' id='name-section' name='name-section'>
+          </div>
+          <div class='form-group'>
+            <label for='id-building'>Implantation</label>
+            <select name='id-building' class='col-auto form-control'>";
 
   $sql = "SELECT * FROM buildings ORDER BY building_name ASC";
   $result = $conn->query($sql);
@@ -128,7 +146,7 @@ if($table === 'building'){
   echo "</select></div><div class='row'><div class='form-group col'><label for='num-section'>Téléphone</label><input type='text' class='form-control' id='num-section' value='".$result["category_number"]."' name='num-section'></div><div class='form-group col'><label for='mail-section'>Mail de contact</label><input value='".$result["category_email"]."' type='e-mail' class='form-control' id='mail-section' name='mail-section'></div></div><button type='submit' class='btn btn-success'>Mettre à jour</button></form>";
 
 // Mise à jour d'un conférencier
-}elseif($table === "conf"){
+}elseif($table === "speakers"){
 
   $sql = "SELECT * FROM speakers WHERE speaker_id=$id";
   $result = $conn->query($sql)->fetch();
@@ -159,7 +177,7 @@ if($table === 'building'){
 
   echo"</select></div></div><div class='form-group'><label for='capacity-room'>Nombre de places assises</label><input type='text' class='form-control' name='capacity-room' value='$capacity'id='capacity-room'></div><button type='submit' class='btn btn-success'>Mettre à jour</button></form>";
 }
-require "../footer.php";
+require "../../footer.php";
 
 // Renvoi automatique vers l'index si pas loggé
 }else{

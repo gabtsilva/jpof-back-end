@@ -51,7 +51,7 @@ if($table === "activities"){
     echo $sql . "<br>" . $e->getMessage();
     }
 
-}elseif($table === "section"){
+}elseif($table === "departments"){
 
   $name=$_POST["name-section"];
   $building=$_POST["id-building"];
@@ -63,7 +63,7 @@ if($table === "activities"){
     $sql = "UPDATE categories SET category_name='$name',building_id='$building',category_number='$number',category_email='$mail' WHERE category_id=$id";
   
     $conn->exec($sql);
-    header("Location:data/data-manage.php?table=section");
+    header("Location:data-manage.php?table=departments");
   }
   catch(PDOException $e)
     {

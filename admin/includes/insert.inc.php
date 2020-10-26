@@ -1,10 +1,10 @@
 <?php 
 
-require "../header.php";
-require "includes/conn.inc.php";
+require "../../header.php";
+require "conn.inc.php";
 
 // Insertion d'une catégorie
-if($_GET["table"] == "section"){
+if($_GET["table"] == "departments"){
 
   $name = $_POST["name-section"];
   $num = $_POST["num-section"];
@@ -16,7 +16,7 @@ if($_GET["table"] == "section"){
     $sql = "INSERT INTO categories (category_name,category_number,category_email,building_id) VALUES ('$name','$num','$mail','$building')";
   
     $conn->exec($sql);
-    header('Location:../admin/index.php');
+    header('Location:../index.php');
     }
   catch(PDOException $e)
     {
@@ -37,7 +37,7 @@ if($_GET["table"] == "section"){
     $sql = "INSERT INTO rooms (room_name,building_id,room_capacity) VALUES ('$nameroom','$buildingroom','$capacityroom')";
 
     $conn->exec($sql);
-    header('Location:../admin/index.php');
+    header('Location:../index.php');
     }
   catch(PDOException $e)
     {
@@ -66,7 +66,7 @@ if($_GET["table"] == "section"){
     $sql = "INSERT INTO activities (activity_name,activity_description,room_id,building_id,category_id,activity_size,activity_date,activity_start,activity_end,activity_speaker,event_id) VALUES ('$activityname','$activitydesc',$activitylocal,$activitybuilding,$activitysection,$activitysize,'$activitydate','$activitystart','$activityend', '$activityconf','$eventid')";
 
     $conn->exec($sql);
-    header('Location:../admin/index.php');
+    header('Location:../index.php');
     }
   catch(PDOException $e)
     {
@@ -76,7 +76,7 @@ if($_GET["table"] == "section"){
   $conn = null;
 
 // Insertion d'un bâtiment
-}elseif($_GET["table"] == "building"){
+}elseif($_GET["table"] == "buildings"){
 
   $name = $_POST["name-building"];
   $street = $_POST["street-building"];
@@ -89,7 +89,7 @@ if($_GET["table"] == "section"){
     $sql = "INSERT INTO buildings (building_name,building_street,building_number,building_cp,building_city) VALUES ('$name','$street','$num','$cp','$city')";
 
     $conn->exec($sql);
-    header('Location:../admin/index.php');
+    header('Location:../index.php');
     }
   catch(PDOException $e)
     {
@@ -99,7 +99,7 @@ if($_GET["table"] == "section"){
   $conn = null;
 
 // Insertion d'un conférencier
-}elseif($_GET["table"] == "conf"){
+}elseif($_GET["table"] == "speakers"){
 
   $name = $_POST["name-conf"];
   $surname = $_POST["surname-conf"];
@@ -115,7 +115,7 @@ if($_GET["table"] == "section"){
     $sql = "INSERT INTO speakers (speaker_name,speaker_surname,speaker_linkedin,speaker_pfp) VALUES ('$name','$surname','$linkedin','$target_file')";
 
     $conn->exec($sql);
-    header('Location:../admin/index.php');
+    header('Location:../index.php');
     }
   catch(PDOException $e)
     {
@@ -136,7 +136,7 @@ if($_GET["table"] == "section"){
     $sql = "INSERT INTO events (event_name,event_description,event_date,event_on) VALUES ('$eventname','$eventdesc','$eventdate','$eventactive')";
 
     $conn->exec($sql);
-    header('Location:../admin/index.php');
+    header('Location:../index.php');
     }
   catch(PDOException $e)
     {
@@ -149,6 +149,6 @@ if($_GET["table"] == "section"){
   header("Location: /jpof/index.php?error");
 }
 
-require "../footer.php"; 
+require "../../footer.php"; 
 
 ?>
