@@ -87,6 +87,6 @@ if(isset($_SESSION["token"])){
           </div>
         </ul>";
 }
-echo "</nav>";
+echo "</nav><div class='container'><div class='col-1></div><div class='col-11>";
 
 ?>

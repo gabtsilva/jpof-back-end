@@ -26,10 +26,10 @@ if($_GET["table"] == "departments"){
   $conn = null;
 
 // Insertion d'un local
-}elseif($_GET["table"] == "room"){
+}elseif($_GET["table"] == "rooms"){
 
   $nameroom = $_POST["name-room"];
-  $buildingroom = $_POST["event-local"];
+  $buildingroom = $_POST["activity-local"];
   $capacityroom = $_POST["capacity-room"];
 
   try {

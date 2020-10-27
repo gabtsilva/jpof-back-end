@@ -1,7 +1,6 @@
 <?php
 
-require "includes/conn.inc.php";
-require "../header.php";
+require "conn.inc.php";
 
 // Suppression d'une donnée en particulier (gère toutes les données)
 $table=$_GET["table"];
@@ -18,9 +17,11 @@ try {
     $sql = "DELETE FROM speakers WHERE speaker_id=$id";
   }else if($table === "events"){
     $sql = "DELETE FROM events WHERE event_id=$id";
+  }else if($table === "rooms"){
+    $sql = "DELETE FROM rooms WHERE room_id=$id";
   }
   $conn->exec($sql);
-  header("Location:data-manage.php?table=".$table);
+  header("Location:../data-manage.php?table=".$table);
   }
 catch(PDOException $e)
   {
@@ -28,7 +29,5 @@ catch(PDOException $e)
   }
 
 $conn = null;
-
-require "../footer.php";
 
 ?>

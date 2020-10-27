@@ -79,7 +79,23 @@ if($_GET["table"] === "buildings"){
         </form>";
 
 }elseif($_GET["table"] === "activities"){
-  echo "<div><ol class='breadcrumb'><li class='breadcrumb-item active'><a href='/jpof/admin/'>Accueil</a></li><li class='breadcrumb-item active'>Ajout d'une activité</li></ol></div><h1>Ajout d'une activité</h1><form action='insert.php?table=activities' method='POST'><div class='row'><div class='form-group col-8'><label for='activity-name'>Intitulé</label><input type='text' class='form-control' id='activity-name' name='activity-name' required></div><div class='form-group col-4'><label for='event-id'>Événement associé</label><select name='event-id' class='col-auto form-control' required><option disabled selected value> --- </option>";
+  echo "<div>
+          <ol class='breadcrumb'>
+            <li class='breadcrumb-item active'>
+              <a href='/jpof/admin/'>Accueil</a></li>
+              <li class='breadcrumb-item active'>Ajout d'une activité</li>
+            </ol>
+          </div>
+          <h1>Ajout d'une activité</h1>
+          <form action='includes/insert.inc.php?table=activities' method='POST'>
+            <div class='row'><div class='form-group col-8'>
+              <label for='activity-name'>Intitulé</label>
+              <input type='text' class='form-control' id='activity-name' name='activity-name' required>
+            </div>
+            <div class='form-group col-4'>
+              <label for='event-id'>Événement associé</label>
+              <select name='event-id' class='col-auto form-control' required>
+                <option disabled selected value> --- </option>";
 
   $sql = "SELECT * FROM events ORDER BY event_name ASC";
   $result = $conn->query($sql);
@@ -127,8 +143,25 @@ if($_GET["table"] === "buildings"){
   echo "</select></div><button type='submit' class='btn btn-success'>Ajouter</button><button type='reset' class='btn btn-warning'>Effacer</button></form>";
 
 }elseif($_GET["table"] === "rooms"){
-  echo "<div><ol class='breadcrumb'><li class='breadcrumb-item active'><a href='/jpof/admin/'>Accueil</a></li><li class='breadcrumb-item active'>Ajout de local</li></ol></div><h1>Ajout de local</h1><form action='insert.php?table=room' method='POST'><div class='form-group row'><div class='col'><label for='name-room'>Numéro du local</label>
-  <input type='text' class='form-control' name ='name-room' id='name-room'></div><div class='col'><label for='activity-local'>Implantation</label><select name='activity-local' class='col-auto form-control'><option disabled selected value> --- </option>";
+  echo "<div>
+          <ol class='breadcrumb'>
+            <li class='breadcrumb-item active'>
+              <a href='/jpof/admin/'>Accueil</a>
+            </li>
+            <li class='breadcrumb-item active'>Ajout de local</li>
+          </ol>
+        </div>
+        <h1>Ajout de local</h1>
+        <form action='includes/insert.inc.php?table=rooms' method='POST'>
+          <div class='form-group row'>
+            <div class='col'>
+              <label for='name-room'>Numéro du local</label>
+              <input type='text' class='form-control' name ='name-room' id='name-room'>
+            </div>
+            <div class='col'>
+              <label for='activity-local'>Implantation</label>
+              <select name='activity-local' class='col-auto form-control'>
+                <option disabled selected value> --- </option>";
 
   // SQL rooms request
   $sql = "SELECT * FROM buildings ORDER BY building_name ASC";
