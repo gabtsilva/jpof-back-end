@@ -1,3 +1,3 @@
-<script src="/script.js"></script>
+<script src="/jpof/script.js"></script>
 </body>
 </html>

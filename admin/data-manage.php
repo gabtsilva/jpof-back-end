@@ -146,12 +146,47 @@ if($table === "departments"){
     echo "<tr><td><a href='update.php?id=".$row["room_id"]."&table=room'>".$row["room_name"]."</a></td><td>".$row["building_name"]."</a></td><td>".$row["room_capacity"]."</td>";
   }
 }else if($table === "events"){
-  echo "<div><ol class='breadcrumb'><li class='breadcrumb-item active'><a href='/jpof/admin/'>Accueil</a></li><li class='breadcrumb-item active'><a href='data-menu.php'>Gérer les données</a></li><li class='breadcrumb-item active'>Gérer les événements</li></ol></div><h1>Liste des événements</h1><small>Cliquez sur une entrée pour la modifier</small><table class='table table-striped'>";
-  echo "<tr class='thead-light'><th>Nom</th><th>Date</th><th></th><th></th><tr>";
+  echo "<div>
+          <ol class='breadcrumb'>
+            <li class='breadcrumb-item active'>
+              <a href='/jpof/admin/'>Accueil</a>
+            </li>
+            <li class='breadcrumb-item active'>
+              <a href='data-menu.php'>Gérer les données</a>
+            </li>
+            <li class='breadcrumb-item active'>Gérer les événements</li>
+          </ol>
+        </div>
+        <h1>Liste des événements</h1>
+        <small>Cliquez sur une entrée pour la modifier</small>
+        <table class='table table-striped'>";
+  echo "<tr class='thead-light'>
+          <th>Nom</th>
+          <th>Date</th>
+          <th></th>
+          <th></th>
+        <tr>";
+
   $sql = "SELECT * FROM events ORDER BY event_name";
   $result = $conn->query($sql);
   foreach($result as $row){
-    echo "<tr><td><a href='update.php?id=".$row["event_id"]."&table=events'>".$row["event_name"]."</a></td><td>".$row["event_date"]."</a></td><td class='modsup'><a href='delete.php?id=".$row["event_id"]."&table=events'><i class='fas fa-trash-alt'></i></a></td><td><div class='checkbox'><label><input type='checkbox' id='event-on-off' data-size='sm' data-toggle='toggle'></label></td>";
+    echo "<tr>
+            <td>
+              <a href='update.php?id=".$row["event_id"]."&table=events'>".$row["event_name"]."</a>
+            </td>
+            <td>".$row["event_date"]."</td>
+            <td class='modsup'>
+              <a href='delete.php?id=".$row["event_id"]."&table=events'>
+                <i class='fas fa-trash-alt'></i>
+              </a>
+            </td>
+            <td>
+              <input type='checkbox' ";
+              if($row["event_on"] == 1) {
+                echo "checked"; 
+              } 
+              echo " id='".$row["event_id"]."' class='event-btn' data-act='".$row["event_on"]."' data-size='sm' data-toggle='toggle'>
+            </td>";
 }
 }
 echo "</table>";

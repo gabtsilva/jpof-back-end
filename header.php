@@ -63,19 +63,27 @@ if(isset($_SESSION["token"])){
           <li class='nav-item'>
             <a class='nav-link' href='/jpof/signout.php'>Déconnexion</a>
           </li>
+          </div>
         </ul>
       </div>";
   }else{
-    echo "<li class='nav-item'><a class='nav-link' href='profile.php'>Mon profil</a></li>
-          
-            <li class='nav-item'><a class='nav-link' href='signout.php'>Déconnexion</a></li>
-          </div>
-        </ul>";
+    echo "<li class='nav-item'>
+            <a class='nav-link' href='profile.php'>Mon profil</a>
+          </li>
+          <li class='nav-item'>
+            <a class='nav-link' href='signout.php'>Déconnexion</a>
+          </li>
+        </div>
+      </ul>";
   }
 }else{
     echo "
-            <li class='nav-item'><a class='nav-link' href='sign.php?set=signup'>Inscription</a></li>
-            <li class='nav-item'><a class='nav-link' href='sign.php?set=signin'>Connexion</a></li>
+            <li class='nav-item'>
+              <a class='nav-link' href='sign.php?set=signup'>Inscription</a>
+            </li>
+            <li class='nav-item'>
+              <a class='nav-link' href='sign.php?set=signin'>Connexion</a>
+            </li>
           </div>
         </ul>";
 }
