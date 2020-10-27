@@ -9,7 +9,7 @@ $(document).ready(function(){
         }
         console.log($on);
         $.ajax({
-            url : '/jpof/test.php',
+            url : 'admin/includes/event-on-off.inc.php',
             type : 'GET',
             data : {active: $on,id:$id},
             dataType : 'html'
