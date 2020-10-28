@@ -34,10 +34,7 @@ if($table === 'buildings'){
               <a href='/jpof/admin/'>Accueil</a>
             </li>
             <li class='breadcrumb-item active'>
-              <a href='data/data-menu.php'>Gérer les données</a>
-            </li>
-            <li class='breadcrumb-item active'>
-              <a href='data/data-manage.php?table=events'>Gérer les activités</a>
+              <a href='data-manage.php?table=activities'>Gérer les activités</a>
             </li>
             <li class='breadcrumb-item active'>".$result["activity_name"]."</li>
           </ol>

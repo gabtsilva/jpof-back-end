@@ -1,5 +1,5 @@
 <?php
-require "admin/includes/conn.inc.php";
+require "conn.inc.php";
 $active = $_GET["active"];
 $id = $_GET["id"];
 

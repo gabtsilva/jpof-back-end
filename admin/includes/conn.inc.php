@@ -1,7 +1,12 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
+// $servername = "localhost";
+// $username = "root";
+// $password = "";
+// $db = "jpof";
+
+$servername = "vps494300.ovh.net:3306";
+$username = "jpof";
+$password ="H1anx6*0";
 $db = "jpof";
 
 try {

@@ -153,3 +153,7 @@ h4{
 .menu-icon{
   font-size:0.8rem;
 }
+.card{
+  display:block;
+  border-radius:0;
+}
