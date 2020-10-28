@@ -6,7 +6,7 @@ $id=$_GET["id"];
 $table=$_GET["table"];
 
 if($table === "activities"){
-  $eventname = $_POST["activity-name"];
+  $eventname = addslashes($_POST["activity-name"]);
   $eventdesc = addslashes($_POST["activity-desc"]);
   $eventlocal = $_POST["event-local"];
   $eventbuilding = $_POST["activity-building"];
