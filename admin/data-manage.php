@@ -2,22 +2,35 @@
 session_start();
 if(isset($_SESSION["token"])){
 require "includes/conn.inc.php";
-require "../header.php";
+require "header.php";
 
 $table=$_GET["table"];
+if($table == "activities"){
+  $add = "activités";
+}elseif($table == "departments"){
+  $add = "départements";
+}elseif($table == "rooms"){
+  $add = "locaux";
+}elseif($table == "speakers"){
+  $add = "conférenciers";
+}elseif($table == "buildings"){
+  $add = "campus";
+}elseif($table == "events"){
+  $add = "événements";
+}
+echo "<div>
+<ol class='breadcrumb'>
+  <li class='breadcrumb-item active'>
+    <a href='/jpof/admin/'>Accueil</a>
+  </li>
+  <li class='breadcrumb-item active'>Gérer les $add </li>
+</ol>
+</div>
+<a href='add.php?table=$table' class='btn btn-info'>Ajouter des $add</a>";
 
+// TABLE DÉPARTEMENTS
 if($table === "departments"){
-  echo "<div>
-          <ol class='breadcrumb'>
-            <li class='breadcrumb-item active'>
-              <a href='/jpof/admin/'>Accueil</a>
-            </li>
-            <li class='breadcrumb-item active'>Gérer les départements</li>
-          </ol>
-        </div>
-        <a href='add.php?table=departments' class='btn btn-info'>Ajouter un département</a>
-        <table class='table table-striped'>";
-  echo "<tr class='thead-light'>
+        echo "<table class='table table-striped'><tr class='thead-light'>
           <th>ID</th>
           <th>Nom</th>
           <th>Campus associé</th>
@@ -46,20 +59,9 @@ if($table === "departments"){
           </tr>";
   }
 
+// TABLE CAMPUS
 }else if($table === "buildings"){
-  echo "<div>
-          <ol class='breadcrumb'>
-            <li class='breadcrumb-item active'>
-              <a href='/jpof/admin/'>Accueil</a>
-            </li>
-            <li class='breadcrumb-item active'>
-              <a href='data-menu.php'>Gérer les campus</a>
-            </li>
-            <li class='breadcrumb-item active'>Gérer les sections</li>
-          </ol>
-        </div>
-        <a href='add.php?table=buildings' class='btn btn-info'>Ajouter un campus</a>
-        <table class='table table-striped'>
+  echo "<table class='table table-striped'>
           <tr class='thead-light'>
             <th>#</th>
             <th>Nom</th>
@@ -86,16 +88,10 @@ if($table === "departments"){
           </tr>";
   }
 
+// TABLE CONFÉRENCIERS
 }else if($table === "speakers"){
-  echo "<div>
-          <ol class='breadcrumb'>
-            <li class='breadcrumb-item active'><a href='/jpof/admin/'>Accueil</a></li>
-            <li class='breadcrumb-item active'>Gérer les conférenciers</li>
-          </ol>
-        </div>
-        <a href='add.php?table=speakers' class='btn btn-info'>Ajouter un conférencier</a>
-        <table class='table table-striped'>";
-  echo "<tr class='thead-light'>
+  echo "<table class='table table-striped'>
+        <tr class='thead-light'>
           <th>#</th>
           <th>Nom - Prénom</th>
           <th>LinkedIn</th>
@@ -117,18 +113,11 @@ if($table === "departments"){
             </td>
           </tr>";
   }
+
+// TABLE ACTIVITÉS
 }else if($table === "activities"){
-  echo "<div>
-          <ol class='breadcrumb'>
-            <li class='breadcrumb-item active'>
-              <a href='/jpof/admin/'>Accueil</a>
-            </li>
-            <li class='breadcrumb-item active'>Gérer les activités</li>
-          </ol>
-        </div>
-        <a href='add.php?table=activities' class='btn btn-info'>Ajouter une activité</a>
-        <table class='table table-striped'>";
-  echo "<tr class='thead-light'>
+        echo "<table class='table table-striped'>
+          <tr class='thead-light'>
           <th>Nom</th>
           <th>Implantation</th>
           <th>Local</th>
@@ -173,18 +162,11 @@ if($table === "departments"){
           </td>
         </tr>";
   }
+
+// TABLE LOCAUX
 }else if($table === "rooms"){
-  echo "<div>
-          <ol class='breadcrumb'>
-            <li class='breadcrumb-item active'>
-              <a href='/jpof/admin/'>Accueil</a>
-            </li>
-            <li class='breadcrumb-item active'>Gérer les locaux</li>
-          </ol>
-        </div>
-        <a href='add.php?table=rooms' class='btn btn-info'>Ajouter un local</a>
-        <table class='table table-striped'>";
-  echo "<tr class='thead-light'>
+  echo "<table class='table table-striped'>
+        <tr class='thead-light'>
           <th>Numéro de local</th>
           <th>Implantation</th>
           <th>Capacité</th>
@@ -205,22 +187,11 @@ if($table === "departments"){
               </a>
             </td>";
   }
+
+// TABLE ÉVÉNEMENTS
 }else if($table === "events"){
-  echo "<div>
-          <ol class='breadcrumb'>
-            <li class='breadcrumb-item active'>
-              <a href='/jpof/admin/'>Accueil</a>
-            </li>
-            <li class='breadcrumb-item active'>
-              <a href='data-menu.php'>Gérer les données</a>
-            </li>
-            <li class='breadcrumb-item active'>Gérer les événements</li>
-          </ol>
-        </div>
-        <h1>Liste des événements</h1>
-        <small>Cliquez sur une entrée pour la modifier</small>
-        <table class='table table-striped'>";
-  echo "<tr class='thead-light'>
+        echo "<table class='table table-striped'>
+        <tr class='thead-light'>
           <th>Nom</th>
           <th>Date</th>
           <th></th>
@@ -250,7 +221,7 @@ if($table === "departments"){
 }
 }
 echo "</table>";
-require "../footer.php";
+require "footer.php";
 }else{
   header("Location:index.php?error");  
 }

@@ -1,7 +1,7 @@
 <?php 
 session_start();
 if(isset($_SESSION["token"]) && $_SESSION["isadmin"] == 1){
-require "../header.php";
+require "header.php";
 require "includes/conn.inc.php";
 
 if($_GET["table"] === "buildings"){
@@ -193,7 +193,7 @@ if($_GET["table"] === "buildings"){
   echo "<div><ol class='breadcrumb'><li class='breadcrumb-item active'><a href='/jpof/admin/'>Accueil</a></li><li class='breadcrumb-item active'>Ajout d'un événement</li></ol></div><h1>Ajout d'un événement</h1><form action='insert.php?table=event' method='POST'><div class='row'><div class='form-group col'><label for='event-name'>Intitulé</label><input type='text' class='form-control' id='event-name' name='event-name' required></div><div class='form-group col'><label for='event-date'>Date</label><input type='text' class='form-control' id='event-date' name='event-date' required></div></div><div class='form-group'><label for='event-desc'>Description</label><textarea class='form-control' name ='event-desc' id='event-desc' rows='3' required></textarea></div><div class='form-group'><legend>Activer l'événement par défaut ?</legend><div class='form-check form-check-inline'><input class='form-check-input' type='radio' name='event-active' id='event-yes' value='1'><label class='form-check-label' for='event-yes'>Oui</label></div><div class='form-check form-check-inline'><input class='form-check-input' type='radio' name='event-active' id='event-no' value='0' checked><label class='form-check-label' for='event-no'>Non</label></div></div><button type='submit' class='btn btn-success'>Ajouter</button><button type='reset' class='btn btn-warning'>Effacer</button></form>";
 }
 
-require "../footer.php";
+require "footer.php";
 }else{
   header("Location:index.php?error"); 
 }

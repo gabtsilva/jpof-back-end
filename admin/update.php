@@ -3,7 +3,7 @@
 session_start();
 if(isset($_SESSION["token"])){
 require "includes/conn.inc.php";
-require "../header.php";
+require "header.php";
 
 // Récupération ID et Table pour affichage
 $id=$_GET["id"];
@@ -176,7 +176,7 @@ if($table === 'buildings'){
   $result = $conn->query($sql)->fetch();
 
 
-  echo "<div><ol class='breadcrumb'><li class='breadcrumb-item active'><a href='/jpof/admin/'>Accueil</a></li><li class='breadcrumb-item active'><a href='data/data-menu.php'>Gérer les données</a></li><li class='breadcrumb-item active'><a href='data/data-manage.php?table=conf'>Gérer les conférenciers</a></li><li class='breadcrumb-item active'>".$result["speaker_name"]." - ".$result["speaker_surname"]."</li></ol></div>";
+  echo "<div><ol class='breadcrumb'><li class='breadcrumb-item active'><a href='/jpof/admin/'>Accueil</a></li><li class='breadcrumb-item active'><a href='data-manage.php?table=speakers'>Gérer les conférenciers</a></li><li class='breadcrumb-item active'>".$result["speaker_name"]." - ".$result["speaker_surname"]."</li></ol></div>";
   echo "<h1>Modifications pour : <span class='e-name'>".$result["speaker_name"]." - ".$result["speaker_surname"]."</span></h1><form action='includes/update.inc.php?id=".$result["speaker_id"]."&table=conf' enctype='multipart/form-data' method='POST'><div class='row'><div class='form-group col'><label for='name-conf'>Nom</label><input type='text' class='form-control' id='name-conf' value='".$result["speaker_name"]."' name='name-conf'></div><div class='form-group col'><label for='surname-conf'>Prénom</label><input type='text'  value='".$result["speaker_surname"]."' class='form-control' id='surname-conf' name='surname-conf'></div></div><div class='row'><div class='form-group col-7'><label for='linkedin-conf'>LinkedIn</label><input  value='".$result["speaker_linkedin"]."' type='text' class='form-control' id='linkedin-conf' name='linkedin-conf'></div><div class='form-group col'><label for='city-conf'>Image de profil</label><input type='file' class='form-control-file' id='city-conf' name='city-conf'></div></div><button type='submit' class='btn btn-success'>Mettre à jour</button></form>";
 
 // Mise à jour d'un local
@@ -201,7 +201,7 @@ if($table === 'buildings'){
 
   echo"</select></div></div><div class='form-group'><label for='capacity-room'>Nombre de places assises</label><input type='text' class='form-control' name='capacity-room' value='$capacity'id='capacity-room'></div><button type='submit' class='btn btn-success'>Mettre à jour</button></form>";
 }
-require "../footer.php";
+require "footer.php";
 
 // Renvoi automatique vers l'index si pas loggé
 }else{
