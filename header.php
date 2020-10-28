@@ -87,6 +87,35 @@ if(isset($_SESSION["token"])){
           </div>
         </ul>";
 }
-echo "</nav><div class='container'><div class='col-1></div><div class='col-11>";
+echo "</nav>
+      <div class=' my-2'>
+        <div class='col-10 d-flex'>
+          <a href='data-manage.php?table=speakers' class='btn btn-info col-2 justify-content-center align-items-center d-flex menu-icon m-1 p-3'>
+              <i class='fas mr-2 fa-users'></i>
+              CONFÉRENCIERS
+          </a>
+          <a href='data-manage.php?table=buildings' class='btn btn-warning col-2 justify-content-center align-items-center d-flex menu-icon m-1 p-3'>
+              <i class='fas mr-2 fa-building'></i>
+              CAMPUS
+          </a>
+          <a href='data-manage.php?table=rooms' class='btn btn-primary col-2 justify-content-center align-items-center d-flex menu-icon m-1 p-3'>
+            <i class='fas mr-2 fa-door-open'></i>
+            LOCAUX
+          </a>
+          <a href='data-manage.php?table=activities' class='btn btn-secondary col-2 justify-content-center align-items-center d-flex menu-icon m-1 p-3'>
+              <i class='fas mr-2 fa-archive'></i>
+              ACTIVITÉS
+          </a>
+          <a href='data-manage.php?table=events' class='btn btn-success col-2 justify-content-center align-items-center d-flex menu-icon m-1 p-3'>
+              <i class='fas mr-2 fa-building'></i>
+              ÉVÉNEMENTS
+          </a>
+          <a href ='data-manage.php?table=departments' class='btn btn-dark col-2 justify-content-center align-items-center d-flex menu-icon m-1 p-3'>
+              <i class='fas mr-2 fa-building'></i>
+              DÉPARTEMENTS
+          </a>
+        </div>
+        </div>
+        <div class='col-11'>";
 
 ?>

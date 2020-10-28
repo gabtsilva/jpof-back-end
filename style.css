@@ -138,3 +138,18 @@ h4{
   border-radius:0;
   padding:0.5rem 2rem;
 }
+/* .menu-icon{ 
+  width:100%;
+} */
+.menu-icon *,.menu-icon *:hover{
+  color:white;
+  text-decoration:none;
+  font-weight:600;
+  margin-bottom:0;
+}
+.menu-icon a i{
+  font-size:1.2rem;
+}
+.menu-icon a h6{
+  font-size:0.9rem;
+}
