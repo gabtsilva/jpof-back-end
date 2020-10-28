@@ -9,7 +9,7 @@ echo "<div clas='container'>
         <div class='signup-form col-3'>
         <form method='POST' class='px-4 py-5' action='".$_SERVER["PHP_SELF"]."?set=signin'>
             <div class='form-group mb-4'>
-                <label>Adress Email</label>
+                <label>Adresse Email</label>
                 <input required name='user_email' placeholder='root@he-ferrer.eu' type='email' class='form-control'>";
                 if(isset($_GET["wrongemail"])){
                     echo "<small>E-mail incorrect ou n'existe pas</small>";
