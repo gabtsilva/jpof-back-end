@@ -18,7 +18,7 @@ if($table == "activities"){
 }elseif($table == "events"){
   $add = "événements";
 }
-echo "<div>
+echo "<div class='my-4'>
 <ol class='breadcrumb'>
   <li class='breadcrumb-item active'>
     <a href='/jpof/admin/'>Accueil</a>
@@ -26,7 +26,7 @@ echo "<div>
   <li class='breadcrumb-item active'>Gérer les $add </li>
 </ol>
 </div>
-<a href='add.php?table=$table' class='btn btn-info'>Ajouter des $add</a>";
+<a href='add.php?table=$table' class='btn my-3 btn-info'>Ajouter des $add</a>";
 
 // TABLE DÉPARTEMENTS
 if($table === "departments"){

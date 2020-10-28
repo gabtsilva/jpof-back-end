@@ -1,6 +1,6 @@
 <?php 
 
-require "../../header.php";
+// require "../../header.php";
 require "conn.inc.php";
 
 // Insertion d'une catégorie
@@ -149,6 +149,6 @@ if($_GET["table"] == "departments"){
   header("Location: /jpof/index.php?error");
 }
 
-require "../../footer.php"; 
+// require "../../footer.php"; 
 
 ?>

@@ -30,30 +30,42 @@ if(isset($_SESSION["token"]) && $_SESSION["isadmin"] == 1){
           </ul>
         </nav>
           <div class='mx-5 my-3 row'>
-            <a href='data-manage.php?table=speakers' class='btn btn-info col-2 justify-content-center align-items-center d-flex menu-icon m-1'>
+            <div class='col-2'>
+            <a href='data-manage.php?table=speakers' class='btn btn-info justify-content-center align-items-center d-flex menu-icon '>
                 <i class='fas mr-2 fa-users'></i>
                 CONFÉRENCIERS
             </a>
-            <a href='data-manage.php?table=buildings' class='btn btn-danger col-2 justify-content-center align-items-center d-flex menu-icon m-1'>
+            </div>
+            <div class='col-2'>
+            <a href='data-manage.php?table=buildings' class='btn btn-danger justify-content-center align-items-center d-flex menu-icon '>
                 <i class='fas mr-2 fa-building'></i>
                 CAMPUS
             </a>
-            <a href='data-manage.php?table=rooms' class='btn btn-primary col-2 justify-content-center align-items-center d-flex menu-icon m-1'>
+            </div>
+            <div class='col-2'>
+            <a href='data-manage.php?table=rooms' class='btn btn-primary justify-content-center align-items-center d-flex menu-icon '>
               <i class='fas mr-2 fa-door-open'></i>
               LOCAUX
             </a>
-            <a href='data-manage.php?table=activities' class='btn btn-secondary col-2 justify-content-center align-items-center d-flex menu-icon m-1'>
+            </div>
+            <div class='col-2'>
+            <a href='data-manage.php?table=activities' class='btn btn-secondary justify-content-center align-items-center d-flex menu-icon '>
                 <i class='fas mr-2 fa-archive'></i>
                 ACTIVITÉS
             </a>
-            <a href='data-manage.php?table=events' class='btn btn-success col-2 justify-content-center align-items-center d-flex menu-icon m-1'>
+            </div>
+            <div class='col-2'>
+            <a href='data-manage.php?table=events' class='btn btn-success justify-content-center align-items-center d-flex menu-icon '>
             <i class='fas mr-2 fa-calendar-alt'></i>
                 ÉVÉNEMENTS
             </a>
-            <a href ='data-manage.php?table=departments' class='btn btn-dark col-2 justify-content-center align-items-center d-flex menu-icon m-1'>
+            </div>
+            <div class='col-2'>
+            <a href ='data-manage.php?table=departments' class='btn btn-dark justify-content-center align-items-center d-flex menu-icon '>
                 <i class='fas mr-2 fa-puzzle-piece'></i>
                 DÉPARTEMENTS
             </a>
+            </div>
           </div>
           <div class='mx-5 my-3'>";
 }else{
