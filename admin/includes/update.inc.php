@@ -110,6 +110,25 @@ if($table === "activities"){
     }
 
   $conn = null; 
+}elseif($table === "events"){
+  $eventname = $_POST["event-name"];
+  $eventdate = $_POST["event-date"];
+  $eventdesc = $_POST["event-desc"];
+
+  try {
+
+    $sql = "UPDATE events SET event_name='$eventname',event_date='$eventdate',event_description='$eventdesc' WHERE event_id = $id";
+
+    $conn->exec($sql);
+    header('Location:../data-manage.php?table=events');
+    }
+  catch(PDOException $e)
+    {
+    echo $sql . "<br>" . $e->getMessage();
+    }
+
+  $conn = null; 
+
 }
 
 $conn = null;

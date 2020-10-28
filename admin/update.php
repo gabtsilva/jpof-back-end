@@ -36,15 +36,15 @@ if($table === 'buildings'){
             <li class='breadcrumb-item active'>
               <a href='data-manage.php?table=activities'>Gérer les activités</a>
             </li>
-            <li class='breadcrumb-item active'>".$result["activity_name"]."</li>
+            <li class='breadcrumb-item active'>".stripslashes($result["activity_name"])."</li>
           </ol>
         </div>
-        <h1>Modifications pour : <span class='e-name'>".$result["activity_name"]."</span></h1>
+        <h1>Modifications pour : <span class='e-name'>".stripslashes($result["activity_name"])."</span></h1>
         <form action='includes/update.inc.php?id=$id&table=activities' method='POST'>
           <div class='row'>
             <div class='form-group col-8'>
               <label for='activity-name'>Intitulé</label>
-              <input type='text' class='form-control' id='activity-name' name='activity-name' value='".$result["activity_name"]."' required>
+              <input type='text' class='form-control' id='activity-name' name='activity-name' value='".stripslashes($result["activity_name"])."' required>
             </div>
             <div class='form-group col-4'>
               <label for='event-id'>Événement associé</label>
@@ -62,7 +62,7 @@ if($table === 'buildings'){
     }
   }
 
-  echo "</select></div></div><div class='row'><div class='form-group col'><label for='activity-name'>Date</label><input value='".$result["activity_date"]."' type='date' class='form-control' id='activity-name' name='activity-date'></div><div class='form-group col'><label for='activity-time'>Tranche horaire</label><div class='input-group'><div class='input-group-prepend'><span class='input-group-text' id='basic-addon1'>De</span></div><input value='".$result["activity_start"]."' type ='time' min='08:00' max='18:00' class='form-control' name='activity-start'><div class='input-group-prepend'><span class='input-group-text'>À</span></div><input type ='time' min='09:00' value='".$result["activity_end"]."' max='18:00' class='form-control' name='activity-end'></div></div></div><div class='form-group'><label for='activity-desc'>Description</label><textarea class='form-control' name='activity-desc' id='activity-desc' rows='3'>".$result["activity_description"]."</textarea></div><div class='row'><div class='form-group col'><label for='activity-building'>Implantation</label><select name='activity-building' class='col-auto form-control'>";
+  echo "</select></div></div><div class='row'><div class='form-group col'><label for='activity-name'>Date</label><input value='".$result["activity_date"]."' type='date' class='form-control' id='activity-name' name='activity-date'></div><div class='form-group col'><label for='activity-time'>Tranche horaire</label><div class='input-group'><div class='input-group-prepend'><span class='input-group-text' id='basic-addon1'>De</span></div><input value='".$result["activity_start"]."' type ='time' min='08:00' max='18:00' class='form-control' name='activity-start'><div class='input-group-prepend'><span class='input-group-text'>À</span></div><input type ='time' min='09:00' value='".$result["activity_end"]."' max='18:00' class='form-control' name='activity-end'></div></div></div><div class='form-group'><label for='activity-desc'>Description</label><textarea class='form-control' name='activity-desc' id='activity-desc' rows='3'>".stripslashes($result["activity_description"])."</textarea></div><div class='row'><div class='form-group col'><label for='activity-building'>Implantation</label><select name='activity-building' class='col-auto form-control'>";
 
   $sql = "SELECT * FROM buildings";
   $result = $conn->query($sql);
@@ -197,6 +197,45 @@ if($table === 'buildings'){
   }
 
   echo"</select></div></div><div class='form-group'><label for='capacity-room'>Nombre de places assises</label><input type='text' class='form-control' name='capacity-room' value='$capacity'id='capacity-room'></div><button type='submit' class='btn btn-success'>Mettre à jour</button></form>";
+}elseif($table == "events"){
+  $sql = "SELECT * FROM events WHERE event_id=$id";
+  $result = $conn->query($sql)->fetch();
+  echo "<div>
+          <ol class='breadcrumb'>
+            <li class='breadcrumb-item active'>
+              <a href='/jpof/admin/'>Accueil</a>
+            </li>
+            <li class='breadcrumb-item active'>Modification de ".$result["event_name"]."</li>
+          </ol>
+        </div>
+        <h1>Ajout d'un événement</h1>
+        <form action='includes/update.inc.php?table=events&id=".$result["event_id"]."' method='POST'>
+          <div class='row'><div class='form-group col'>
+            <label for='event-name'>Intitulé</label>
+            <input type='text' class='form-control' value='".$result["event_name"]."' id='event-name' name='event-name' required>
+          </div>
+          <div class='form-group col'>
+            <label for='event-date'>Date</label>
+            <input type='text' value='".$result["event_date"]."' class='form-control' id='event-date' name='event-date' required>
+          </div>
+        </div>
+        <div class='form-group'>
+          <label for='event-desc'>Description</label>
+          <textarea value='".$result["event_description"]."' class='form-control' name ='event-desc' id='event-desc' rows='3' required></textarea>
+        </div>
+        <div class='form-group'>
+          <legend>Activer l'événement par défaut ?</legend>
+            <div class='form-check form-check-inline'>
+              <input class='form-check-input' type='radio' name='event-active' id='event-yes' value='1'>
+              <label class='form-check-label' for='event-yes'>Oui</label>
+            </div>
+            <div class='form-check form-check-inline'>
+              <input class='form-check-input' type='radio' name='event-active' id='event-no' value='0' checked>
+              <label class='form-check-label' for='event-no'>Non</label>
+            </div>
+          </div>
+          <button type='submit' class='btn btn-success'>Mettre à jour</button>
+        </form>";
 }
 require "footer.php";
 
